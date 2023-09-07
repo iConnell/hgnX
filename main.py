@@ -4,7 +4,7 @@ from datetime import datetime
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/api")
 def student_info(track: str = "Backend", slack_name: str = "McConnell Ikechukwu"):
     data = {
         "slack_name": slack_name,
@@ -15,4 +15,5 @@ def student_info(track: str = "Backend", slack_name: str = "McConnell Ikechukwu"
         "github_repo_url": "https://github.com/iConnell/hgnX",
         "status_code": 200,
     }
+    
     return data
