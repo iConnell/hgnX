@@ -11,8 +11,8 @@ def student_info(track: str = "Backend", slack_name: str = "McConnell Ikechukwu"
         "current_day": datetime.today().strftime("%A"),
         "utc_time": datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
         "track": track,
-        "github_file_url": "https://github.com/iConnell/repo/blob/main/file_name.ext",
-        "github_repo_url": "https://github.com/iConnell/repo",
+        "github_file_url": "https://github.com/iConnell/hgnX/blob/master/main.py",
+        "github_repo_url": "https://github.com/iConnell/hgnX",
         "status_code": 200,
     }
     return data
