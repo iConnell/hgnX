@@ -54,3 +54,6 @@ To get the student information, send a GET request to the `/api` endpoint. You c
 
 ```sh
 curl -X GET "http://127.0.0.1:8000/api"
+```
+
+Looking for python developers? - [Hire Python Developers](https://hng.tech/hire/python-developers)
