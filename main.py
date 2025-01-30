@@ -16,8 +16,8 @@ def student_info():
     response = {
         "data": {
             "email": "ik.ugwuanyi@gmail.com",
-            "utc_time": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "github_repo_url": "https://github.com/iConnell/hgnX",
+            "current_datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "github_url": "https://github.com/iConnell/hgnX",
         },
         "status_code": 200,
     }
