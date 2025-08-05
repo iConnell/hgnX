@@ -1,22 +1,30 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Request, HTTPException
+from typing import Optional
+import os
 from datetime import datetime
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["GET"],
-    allow_credentials=True,
-)
+
+verify_token = os.environ.get("VERIFY_TOKEN")
 
 
-@app.get("/api")
-def student_info():
-    response = {
-        "email": "ik.ugwuanyi@gmail.com",
-        "current_datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "github_url": "https://github.com/iConnell/hgnX",
-    }
+@app.get("/")
+async def verify_webhook(
+    mode: Optional[str] = None,
+    challenge: Optional[str] = None,
+    verify_token: Optional[str] = None,
+):
+    if mode == "subscribe" and verify_token == verify_token:
+        print("WEBHOOK VERIFIED")
+        return challenge
+    else:
+        raise HTTPException(status_code=403)
 
-    return response
+
+@app.post("/")
+async def receive_webhook(request: Request):
+    timestamp = datetime.now().isoformat(sep=" ", timespec="seconds")
+    print(f"\n\nWebhook received {timestamp}\n")
+    body = await request.json()
+    print(body)
+    return {}
