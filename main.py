@@ -10,11 +10,14 @@ verify_token = os.environ.get("VERIFY_TOKEN")
 
 @app.get("/")
 async def verify_webhook(
-    mode: Optional[str] = None,
-    challenge: Optional[str] = None,
-    verify_token: Optional[str] = None,
+    request: Request
 ):
-    if mode == "subscribe" and verify_token == verify_token:
+
+    mode = request.query_params.get("hub.mode")
+    challenge = request.query_params.get("hub.challenge")
+    token = request.query_params.get("hub.verify_token")
+
+    if mode == "subscribe" and verify_token == token:
         print("WEBHOOK VERIFIED")
         return challenge
     else:
